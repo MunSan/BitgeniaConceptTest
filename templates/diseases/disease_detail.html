@@ -1,4 +1,25 @@
-<h3>Name:{{data.Name}}</h3><br>
-<h3>Inheritance:{{data.Inheritance}}</h3><br>
-<h3>Genes related to:{{data.Gene}}</h3><br>
+{% include 'base.html' %}
+<div class="col align-middle" style="width: 200px;">
+    <a class="btn btn-primary" href="{% url 'diseases' %}">Up</a>
+</div>
+<h3>Name: {{data.Name}}</h3><br>
+<h3>Inheritance: {{data.Inheritance}}</h3><br>
+<h3>Genes related to: {{data.Gene}}</h3><br>
+<h3>Genes related to:</h3><br>
+{% for d in genes %}
+    <div>{{d}}</div>
+{% endfor %}
 <hr/>
+<div class="container">
+    <span>Edit disease: {{data.Name}}</span>
+        <div class="col align-middle" style="width: 200px;">
+            <a class="btn btn-primary" href="{% url 'diseases' %}{{data.id}}/update_disease">Edit</a>
+        </div>
+</div>
+<br>
+<div class="container">
+    <span>Delete section: {{data.Name}}</span>
+    <div class="col align-middle" style="width: 200px;">
+        <a class="btn btn-primary" href="{% url 'diseases' %}{{data.id}}/delete_disease">Delete</a>
+    </div>
+</div>

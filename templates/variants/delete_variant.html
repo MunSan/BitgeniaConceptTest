@@ -1,6 +1,7 @@
+{% include 'base.html' %}
 <form method="post">
     {% csrf_token %}
-    Click YES to confirm
+    Click YES to confirm DELETE
     <input type = "submit" value="YES">
-    <a href='/variants'>Cancel</a>
+    <a class="btn btn-primary" href='/variants'>Cancel</a>
 </form>

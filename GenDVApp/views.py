@@ -26,10 +26,15 @@ def RetrieveGeneListView(request):
 def RetrieveGeneDetailView(request,_id):
     try:
         data = Gene.objects.get(id=_id)
+        queryD = Disease.objects.filter(Gene = data)
+        queryD = [*queryD]
+        queryV = Variant.objects.filter(Gene = data)
+        queryV = [*queryV]
     except Gene.DoesNotExist:
         raise Http404('This gene does not exist')
+    context = {'data':data, 'diseases':queryD, 'variants':queryV}
 
-    return render(request, 'genes/gene_detail.html', {'data':data})
+    return render(request, 'genes/gene_detail.html', context)
 
 @login_required()
 def UpdateGeneView(request,_id):
@@ -45,7 +50,7 @@ def UpdateGeneView(request,_id):
             return redirect(f'/genes/{id}')
     else:
         form = GeneForm(instance=old_data)
-        context = {'form':form}
+        context = {'form':form, 'genid':_id}
         return render(request, 'genes/update_gene.html', context)
 
 @login_required()
@@ -83,10 +88,13 @@ def RetrieveDiseaseListView(request):
 def RetrieveDiseaseDetailView(request,_id):
     try:
         data = Disease.objects.get(pk=_id)
+        queryG = Gene.objects.filter(Disease = data)
+        queryG = [*queryG]
     except Disease.DoesNotExist:
         raise Http404('This disease does not exist')
+    context = {'data':data, 'genes':queryG}
 
-    return render(request, 'diseases/disease_detail.html', {'data':data})
+    return render(request, 'diseases/disease_detail.html', context)
 
 @login_required()
 def UpdateDiseaseView(request,_id):
@@ -102,7 +110,7 @@ def UpdateDiseaseView(request,_id):
             return redirect(f'/diseases/{id}')
     else:
         form = DiseaseForm(instance=old_data)
-        context = {'form':form}
+        context = {'form':form, 'diseid':_id}
         return render(request, 'diseases/update_disease.html', context)
 
 @login_required()
@@ -140,10 +148,13 @@ def RetrieveVariantListView(request):
 def RetrieveVariantDetailView(request,_id):
     try:
         data = Variant.objects.get(pk=_id)
+        queryG = Gene.objects.filter(Variant = data)
+        queryG = [*queryG]
     except Variant.DoesNotExist:
         raise Http404('This variant does not exist')
+    context = {'data':data, 'genes':queryG}
 
-    return render(request, 'variants/variant_detail.html', {'data':data})
+    return render(request, 'variants/variant_detail.html', context)
 
 @login_required()
 def UpdateVariantView(request,_id):
@@ -159,7 +170,7 @@ def UpdateVariantView(request,_id):
             return redirect(f'/variant/{id}')
     else:
         form = VariantForm(instance=old_data)
-        context = {'form':form}
+        context = {'form':form, 'varid':_id}
         return render(request, 'variants/update_variant.html', context)
 
 @login_required()

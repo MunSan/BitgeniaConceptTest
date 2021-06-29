@@ -7,147 +7,23 @@
 {% if user.is_authenticated %}
 <div class="container">
 	Hi {{ user.username }}!
-	<p><a href="{% url 'logout' %}">Log Out</a></p>
+	<p><button class="btn btn-primary" href="{% url 'logout' %}">Log Out</button></p>
 </div>
+
+<div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 	<div class="row flex-lg-nowrap">
-	<!-- <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-		<div class="card p-3">
-		<div class="e-navlist e-navlist--active-bg">
-			<ul class="nav">
-			<li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
-			<li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-crud-users" target="__blank"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
-			<li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
-			</ul>
+		<div class="align-middle" style="width: 200px;">
+			<span class="border border-light">
+				<p>Genes list</p>
+				<a class="btn btn-primary" href="{% url 'genes' %}">Genes</a>
+				<p>Diseases list</p>
+				<a class="btn btn-primary" href="{% url 'diseases' %}">Diseases</a>
+				<p>Variants list</p>
+				<a class="btn btn-primary" href="{% url 'variants' %}">Variants</a>
+			</span>
 		</div>
-		</div>
-	</div> -->
-
-	<div class="col">
-		<div class="e-tabs mb-3 px-3">
-			<ul class="nav nav-tabs">
-				<li class="nav-item"><a class="nav-link active" href="#">Genes</a></li>
-			</ul>
-		
-
-			<div class="row flex-lg-nowrap">
-			<div class="col mb-3">
-				<div class="e-panel card">
-					<div class="card-body">
-						<div class="card-title">
-						<h6 class="mr-2"><span>GenDV App</span><small class="px-1"> Genes | Diseases | Variants</small></h6>
-						</div>
-						<div class="e-table">
-						<div class="table-responsive table-lg mt-3">
-							<table class="table table-bordered">
-							<thead>
-								<tr>
-								<th class="align-top">
-									<div class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0">
-									<input type="checkbox" class="custom-control-input" id="all-items">
-									<label class="custom-control-label" for="all-items"></label>
-									</div>
-								</th>
-								<th class="max-width">Symbol</th>
-								<th class="sortable">Chromosome</th>
-								<th>Start</th>
-								<th>End</th>
-								<th>Diseases</th>
-								<th>Variants</th>
-								<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-								<td class="align-middle">
-									<div class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
-									<input type="checkbox" class="custom-control-input" id="item-1">
-									<label class="custom-control-label" for="item-1"></label>
-									</div>
-								</td>
-								<td class="align-middle text-center">
-									<div>
-										<td class="text-nowrap align-middle">INSERTO REFERENCIA A Symbol</td>
-									</div>
-								</td>
-								<td class="text-nowrap align-middle">INSERTO REFERENCIA A Chromosome</td>
-								<td class="text-nowrap align-middle">INSERTO REFERENCIA A Start</td>
-								<th>
-									<button class="btn btn-sm btn-outline-secondary badge" 
-									type="button" data-toggle="modal" 
-									data-target="#user-form-modal">INSERTO REFERENCIA A Diseases</button>
-								</th>
-								<th>
-									<button class="btn btn-sm btn-outline-secondary badge" 
-										type="button" data-toggle="modal" 
-										data-target="#user-form-modal">INSERTO REFERENCIA A Variants</button>
-								</th>
-								<td class="text-center align-middle">
-									<div class="btn-group align-top">
-										<button class="btn btn-sm btn-outline-secondary badge" 
-										type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
-										<button class="btn btn-sm btn-outline-secondary badge" 
-										type="button"><i class="fa fa-trash"></i></button>
-									</div>
-								</td>
-								</tr>
-							</tbody>
-							</table>
-							
-						</div>
-						<!-- VER COMO ARMAR UNA LISTA BOTONES DE PAGINAS 
-							<div class="d-flex justify-content-center">
-							<ul class="pagination mt-3 mb-0">
-							<li class="disabled page-item"><a href="#" class="page-link">‹</a></li>
-							<li class="active page-item"><a href="#" class="page-link">1</a></li>
-							<li class="page-item"><a href="#" class="page-link">2</a></li>
-							<li class="page-item"><a href="#" class="page-link">3</a></li>
-							<li class="page-item"><a href="#" class="page-link">4</a></li>
-							<li class="page-item"><a href="#" class="page-link">5</a></li>
-							<li class="page-item"><a href="#" class="page-link">›</a></li>
-							<li class="page-item"><a href="#" class="page-link">»</a></li>
-							</ul>
-						</div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 col-lg-3 mb-3">
-				<div class="card">
-				<div class="card-body">
-					<div class="text-center px-xl-3">
-					<button class="btn btn-success btn-block" type="button" 
-					data-toggle="modal" data-target="#user-form-modal">New Gene</button>
-					</div>
-					<!-- <hr class="my-3">
-					<div class="e-navlist e-navlist--active-bold">
-					<ul class="nav">
-						<li class="nav-item active"><a href="" class="nav-link"><span>All</span>&nbsp;<small>/&nbsp;32</small></a></li>
-						<li class="nav-item"><a href="" class="nav-link"><span>Active</span>&nbsp;<small>/&nbsp;16</small></a></li>
-						<li class="nav-item"><a href="" class="nav-link"><span>Selected</span>&nbsp;<small>/&nbsp;0</small></a></li>
-					</ul>
-					</div> -->
-					<hr class="my-3">
-					<div>
-					<!-- <div class="form-group">
-						<label>Date from - to:</label>
-						<div>
-						<input id="dates-range" class="form-control flatpickr-input" placeholder="01 Dec 17 - 27 Jan 18" type="text" readonly="readonly">
-						</div>
-					</div> -->
-					<div class="form-group">
-						<label>Search by Name/Symbol:</label>
-						<div><input class="form-control w-100" type="text" placeholder="Name/Symbol" value=""></div>
-					</div>
-					</div>
-				</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		<!-- Aca estaba el formulario de create -->
 	</div>
-	</div>
-	</div>
+</div>
 
 {% else %}
 <div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">

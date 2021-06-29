@@ -1,4 +1,34 @@
-{% for data in dataset %}
-{{data}}
-<hr>
-{% endfor %}
+{% include 'base.html' %}
+{% block content %}
+<div class="col align-middle" style="width: 200px;">
+    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+</div>
+<h3>Diseases list</h3>
+{% endblock %}
+<div>
+    <li>
+        {% for data in dataset %}
+        <div>
+            <div class="container">
+                <div class="row flex-lg-nowrap">
+                    <span>{{data}}</span>
+                    <div class="col align-middle" style="width: 200px;">
+                        <a class="btn btn-primary" href="{% url 'diseases' %}{{data.id}}">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </li>
+</div>
+<br>
+<div class="container">
+    <span>Insert new disease</span>
+    <div class="col align-middle" style="width: 200px;">
+        <a class="btn btn-primary" href="{% url 'diseases' %}create_disease">Create</a>
+    </div>
+</div>
+<div class="col align-middle" style="width: 200px;">
+    <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+</div>

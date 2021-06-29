@@ -1,7 +1,26 @@
-<h3>"rs" code:{{data.Code}}</h3><br>
-<h3>Chromosome:{{data.Chromosome}}</h3><br>
-<h3>SNP Position:{{data.Position}}</h3><br>
-<h3>Variant reference:{{data.Reference}}</h3><br>
-<h3>Alternative variant:{{data.Alternative}}</h3><br>
-<h3>Gene related to:{{data.Gene}}</h3><br>
+{% include 'base.html' %}
+<div class="col align-middle" style="width: 200px;">
+    <a class="btn btn-primary" href="{% url 'variants' %}">Up</a>
+</div>
+<h3>"rs" code: {{data.Code}}</h3><br>
+<h3>Chromosome: {{data.Chromosome}}</h3><br>
+<h3>SNP Position: {{data.Position}}</h3><br>
+<h3>Variant reference: {{data.Reference}}</h3><br>
+<h3>Alternative variant: {{data.Alternative}}</h3><br>
+<h3>Gene related to: {{data.Gene}}</h3><br>
 <hr/>
+<hr/>
+<div class="container">
+    <span>Edit variant: {{data.Code}}</span>
+        <div class="col align-middle" style="width: 200px;">
+            <a class="btn btn-primary" href="{% url 'variants' %}{{data.id}}/update_variant">Edit</a>
+        </div>
+</div>
+<br>
+<div class="container">
+    <span>Delete section: {{data.Code}}</span>
+    <div class="col align-middle" style="width: 200px;">
+        <a class="btn btn-primary" href="{% url 'variants' %}{{data.id}}/delete_variant">Delete</a>
+    </div>
+</div>
+

@@ -1,7 +1,30 @@
+{% include 'base.html' %}
+<div class="col align-middle" style="width: 200px;">
+    <a class="btn btn-primary" href="{% url 'genes' %}">Up</a>
+</div>
 <h3>Symbol:{{data.Symbol}}</h3><br>
 <h3>Chromosome:{{data.Chromosome}}</h3><br>
 <h3>Start position:{{data.Start}}</h3><br>
 <h3>End position:{{data.End}}</h3><br>
-<h3>Related diseases:{{data.Disease}}</h3><br>
-<h3>Related variants:{{data.Variant}}</h3><br>
+<h3>Related diseases:</h3><br>
+{% for d in diseases %}
+    <div>{{d}}</div>
+{% endfor %}
+<h3>Related variants:</h3><br>
+{% for v in variants %}
+    <span>{{v}} </span>
+{% endfor %}
 <hr/>
+<div class="container">
+    <span>Edit gene: {{data.Symbol}}</span>
+        <div class="col align-middle" style="width: 200px;">
+            <a class="btn btn-primary" href="{% url 'genes' %}{{data.id}}/update_gene">Edit</a>
+        </div>
+</div>
+<br>
+<div class="container">
+    <span>Delete section: {{data.Symbol}}</span>
+    <div class="col align-middle" style="width: 200px;">
+        <a class="btn btn-primary" href="{% url 'genes' %}{{data.id}}/delete_gene">Delete</a>
+    </div>
+</div>
